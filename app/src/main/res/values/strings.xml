@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Proyecto Calvario</string>
+    <string name="waiting_for_gps">Esperando GPS...</string>
+</resources>

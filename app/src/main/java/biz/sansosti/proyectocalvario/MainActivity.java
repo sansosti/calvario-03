@@ -51,7 +51,41 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         inicializarAFDs();
+
+        inicializarStaticViews();
+
         pedirPermisos(this);
+    }
+
+    private void inicializarStaticViews() {
+        tv_user_shown_status = (TextView) findViewById(R.id.tv_user_shown_status);
+        tv_latitude = (TextView) findViewById(R.id.tv_latitude);
+        tv_longitude = (TextView) findViewById(R.id.tv_longitude);
+        tv_status = (TextView) findViewById(R.id.tv_status);
+        tv_current_checkpoint = (TextView) findViewById(R.id.tv_current_checkpoint);
+        tv_closer_checkpoint = (TextView) findViewById(R.id.tv_closer_checkpoint);
+
+        mCheckPoints = new TextView[MAX_CHECKPOINTS_DISPLAY_LIST];
+
+        for (int i = 0; i < MAX_CHECKPOINTS_DISPLAY_LIST; i++) {
+            mCheckPoints[i] = new TextView(this);
+            mCheckPoints[i].setId(i);
+            mCheckPoints[i].setText(String.valueOf(i));
+            int checkPointStyle = R.style.TextAppearance_AppCompat_Inverse;
+            if (Build.VERSION.SDK_INT >= 23) {
+                mCheckPoints[i].setTextAppearance(checkPointStyle);
+            } else {
+                mCheckPoints[i].setTextAppearance(this, checkPointStyle);
+            }
+
+            TableRow parentRow = new TableRow(this);
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            parentRow.setLayoutParams(lp);
+            parentRow.addView(mCheckPoints[i]);
+
+            TableLayout parentTable = (TableLayout) findViewById(R.id.tl_debug);
+            parentTable.addView(parentRow,i);
+        }
     }
 
     private void inicializarAFDs() {
@@ -99,35 +133,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        tv_user_shown_status = (TextView) findViewById(R.id.tv_user_shown_status);
-        tv_latitude = (TextView) findViewById(R.id.tv_latitude);
-        tv_longitude = (TextView) findViewById(R.id.tv_longitude);
-        tv_status = (TextView) findViewById(R.id.tv_status);
-        tv_current_checkpoint = (TextView) findViewById(R.id.tv_current_checkpoint);
-        tv_closer_checkpoint = (TextView) findViewById(R.id.tv_closer_checkpoint);
-
-        mCheckPoints = new TextView[MAX_CHECKPOINTS_DISPLAY_LIST];
-
-        for (int i = 0; i < MAX_CHECKPOINTS_DISPLAY_LIST; i++) {
-            mCheckPoints[i] = new TextView(this);
-            mCheckPoints[i].setId(i);
-            mCheckPoints[i].setText(String.valueOf(i));
-            int checkPointStyle = R.style.TextAppearance_AppCompat_Inverse;
-            if (Build.VERSION.SDK_INT >= 23) {
-                mCheckPoints[i].setTextAppearance(checkPointStyle);
-            } else {
-                mCheckPoints[i].setTextAppearance(this, checkPointStyle);
-            }
-
-            TableRow parentRow = new TableRow(this);
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            parentRow.setLayoutParams(lp);
-            parentRow.addView(mCheckPoints[i]);
-
-            TableLayout parentTable = (TableLayout) findViewById(R.id.tl_debug);
-            parentTable.addView(parentRow,i);
-        }        
     }
 
     public void iniciarServicioGPS() {

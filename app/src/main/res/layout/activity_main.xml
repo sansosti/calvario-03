@@ -1,21 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_app_02"
-    tools:context="biz.sansosti.proyectocalvario.MainActivity">
+    tools:context="biz.sansosti.proyectocalvario.MainActivity"
+    android:id="@+id/main_background">
 
     <TextView
-        android:id="@+id/tv_main_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tv_user_shown_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
         android:text="@string/waiting_for_gps"
-        android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
 
-</android.support.constraint.ConstraintLayout>
+    <TableLayout
+        android:id="@+id/main_debug_table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_latitude_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/latitude_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+
+            <TextView
+                android:id="@+id/tv_latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_longitude_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/latitude_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+            <TextView
+                android:id="@+id/tv_longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_status_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/status_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/waiting_for_gps"
+                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_current_checkpoint_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_checkpoint_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+        <TextView
+            android:id="@+id/tv_current_checkpoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/boyando"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_closer_checkpoint_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/closer_checkpoint_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+            <TextView
+                android:id="@+id/tv_closer_checkpoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boyando"
+                android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_closer_checkpoint_label" />
+        </TableRow>
+        <TableLayout
+            android:id="@+id/tl_debug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TableLayout>
+
+    </TableLayout>
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package biz.sansosti.proyectocalvario;
 
+import android.content.res.AssetFileDescriptor;
 import android.location.Location;
 
 /**
@@ -8,32 +9,33 @@ import android.location.Location;
 
 public class CheckPoint {
     private String name;
-    private String fileName;
     private Location location;
-    private String customBackground;
+    private AssetFileDescriptor audio;
+    private AssetFileDescriptor customBackgroundAudio;
 
-    public CheckPoint(String aName, String lat, String lon, String aFileName, String aCustomBackground) {
-        this.name = aName;
-        fileName = aFileName;
-        location = new Location(this.name);
+    public CheckPoint(String aName, String lat, String lon, AssetFileDescriptor aAudio, AssetFileDescriptor aCustomBackgroundAudio) {
+        name = aName;
+        audio = aAudio;
+        customBackgroundAudio = aCustomBackgroundAudio;
+
+        location = new Location(name);
         location.setLatitude(Float.valueOf(lat));
         location.setLongitude(Float.valueOf(lon));
-        customBackground = aCustomBackground;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
-
     public Location getLocation() {
         return location;
     }
 
-    public String getCustomBackground() {
-        return customBackground;
+    public AssetFileDescriptor getAudio() {
+        return audio;
+    }
+
+    public AssetFileDescriptor getCustomBackground() {
+        return customBackgroundAudio;
     }
 }

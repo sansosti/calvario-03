@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">Calvario Project</string>
     <string name="waiting_for_gps">Waiting for GPS</string>
+    <string name="boyando">wandering...</string>
+    <string name="closer_checkpoint_label">Closer CHKP</string>
+    <string name="close_confirmation">Press again to close</string>
+    <string name="playing">Playing...</string>
+    <string name="running">Wandering...</string>
 </resources>

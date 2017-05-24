@@ -3,11 +3,11 @@
     <string name="waiting_for_gps">Esperando GPS...</string>
     <string name="boyando">boyando...</string>
     <string name="latitude_label" translatable="false">Lat</string>
-    <string name="longitude_label" translatable="false">Lon</string>
     <string name="status_label" translatable="false">Status</string>
     <string name="current_checkpoint_label" translatable="false">Curr CHKP</string>
     <string name="closer_checkpoint_label">Closer CHKP</string>
     <string name="close_confirmation">Presione nuevamente para cerrar</string>
     <string name="running">Andando...</string>
     <string name="playing">Reproduciendo...</string>
+    <string name="longitude_label">Lon</string>
 </resources>

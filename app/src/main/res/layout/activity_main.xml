@@ -8,77 +8,16 @@
     tools:context="biz.sansosti.proyectocalvario.MainActivity"
     android:id="@+id/main_background">
 
-    <TextView
-        android:id="@+id/tv_user_shown_status"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:text="@string/waiting_for_gps"
-        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-
     <TableLayout
-        android:id="@+id/main_debug_table"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
-
+        android:layout_height="match_parent">
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="@string/latitude_label"
-                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-
-            <TextView
-                android:id="@+id/tv_latitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="@string/longitude_label"
-                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-            <TextView
-                android:id="@+id/tv_longitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="@string/status_label"
-                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-            <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/tv_user_shown_status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:text="@string/waiting_for_gps"
@@ -87,42 +26,114 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/current_checkpoint_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-        <TextView
-            android:id="@+id/tv_current_checkpoint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/boyando"
-            android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-        </TableRow>
+            <TableLayout
+                android:id="@+id/main_debug_table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteY="0dp"
+                tools:layout_editor_absoluteX="8dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/tv_closer_checkpoint_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/closer_checkpoint_label"
-                android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
-            <TextView
-                android:id="@+id/tv_closer_checkpoint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/boyando"
-                android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-                app:layout_constraintLeft_toLeftOf="@+id/tv_closer_checkpoint_label" />
-        </TableRow>
-        <TableLayout
-            android:id="@+id/tl_debug"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </TableLayout>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/latitude_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
 
+                    <TextView
+                        android:id="@+id/tv_latitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/longitude_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+                    <TextView
+                        android:id="@+id/tv_longitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/status_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/waiting_for_gps"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_checkpoint_label"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+                <TextView
+                    android:id="@+id/tv_current_checkpoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/boyando"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tv_closer_checkpoint_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/closer_checkpoint_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Inverse" />
+                    <TextView
+                        android:id="@+id/tv_closer_checkpoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/boyando"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_closer_checkpoint_label" />
+                </TableRow>
+                <TableLayout
+                    android:id="@+id/tl_debug"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TableLayout>
+
+            </TableLayout>
+        </TableRow>
     </TableLayout>
 
 </RelativeLayout>

@@ -13,14 +13,14 @@ public class CheckPoint {
     private AssetFileDescriptor audio;
     private AssetFileDescriptor customBackgroundAudio;
 
-    public CheckPoint(String aName, String lat, String lon, AssetFileDescriptor aAudio, AssetFileDescriptor aCustomBackgroundAudio) {
+    public CheckPoint(String aName, double lat, double lon, AssetFileDescriptor aAudio, AssetFileDescriptor aCustomBackgroundAudio) {
         name = aName;
         audio = aAudio;
         customBackgroundAudio = aCustomBackgroundAudio;
 
         location = new Location(name);
-        location.setLatitude(Float.valueOf(lat));
-        location.setLongitude(Float.valueOf(lon));
+        location.setLatitude(lat);
+        location.setLongitude(lon);
     }
 
     public String getName() {

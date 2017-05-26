@@ -64,8 +64,9 @@ public class LocationAudioPlayer {
     protected void populateCheckPoints(){
 
         if (!DEBUG) {
-            checkPointsDefs = new CheckPoint[8];
+            checkPointsDefs = new CheckPoint[13];
             int cp = 0;
+            /*
             checkPointsDefs[cp++] = new CheckPoint("02","-37.3294242","-59.1508588" ,MainActivity.afdPuesto02,MainActivity.afdFondoPajaritosEstereo);
             checkPointsDefs[cp++] = new CheckPoint("03","-37.329595" ,"-59.1511569" ,MainActivity.afdPuesto03,null);
             checkPointsDefs[cp++] = new CheckPoint("04","-37.3295102","-59.1518422" ,MainActivity.afdPuesto04,null); // sin pausa
@@ -74,17 +75,31 @@ public class LocationAudioPlayer {
             checkPointsDefs[cp++] = new CheckPoint("07","-37.3297072","-59.1534959" ,MainActivity.afdPuesto07,null);
             checkPointsDefs[cp++] = new CheckPoint("08","-37.3291582","-59.1533802" ,MainActivity.afdPuesto08,null);
             checkPointsDefs[cp++] = new CheckPoint("09","-37.3288975","-59.1529821" ,MainActivity.afdPuesto09,MainActivity.afdFondoFin);
+            */
+            checkPointsDefs[cp++] = new CheckPoint("01 - Escalera",-37.328094,-59.152994,MainActivity.afdPuesto01,MainActivity.afdFondoConAphex);
+            checkPointsDefs[cp++] = new CheckPoint("02 - Cartel Baño",-37.328313,-59.152454,MainActivity.afdPuesto02,MainActivity.afdFondoConAphex);
+            checkPointsDefs[cp++] = new CheckPoint("03 - Camino arriba Capilla",-37.328819,-59.152883,MainActivity.afdPuesto03,null);
+            checkPointsDefs[cp++] = new CheckPoint("04 - Inicio Bajada Rampa",-37.329126,-59.152802,MainActivity.afdPuesto04,null);
+            checkPointsDefs[cp++] = new CheckPoint("05 - Arbol Gruta",-37.329300,-59.152096,MainActivity.afdPuesto05,null);
+            checkPointsDefs[cp++] = new CheckPoint("06 - Camino allá abajo",-37.329754,-59.152114,MainActivity.afdPuesto06,null);
+            checkPointsDefs[cp++] = new CheckPoint("07 - El 08 de antes",-37.3291582,-59.1533802 ,MainActivity.afdPuesto07,null);
+            checkPointsDefs[cp++] = new CheckPoint("08 - Por el camino",-37.329608,-59.153881 ,MainActivity.afdPuesto08,null);
+            checkPointsDefs[cp++] = new CheckPoint("09 - Frente al 08, al borde",-37.329858,-59.153854 ,MainActivity.afdPuesto09,null);
+            checkPointsDefs[cp++] = new CheckPoint("10 - Curva Camino",-37.329725,-59.154535 ,MainActivity.afdPuesto10,null);
+            checkPointsDefs[cp++] = new CheckPoint("11 - Bosque Llegando a Cima",-37.329378,-59.154753 ,MainActivity.afdPuesto11,null);
+            checkPointsDefs[cp++] = new CheckPoint("12 - Espalda Jesus",-37.328874,-59.155210 ,MainActivity.afdPuesto12,null);
+            checkPointsDefs[cp++] = new CheckPoint("13 - Bajando Escalera",-37.328378,-59.153826 ,MainActivity.afdPuesto13,null);
         } else {
             checkPointsDefs = new CheckPoint[8];
             int cp = 0;
-            checkPointsDefs[cp++] = new CheckPoint("02","-37.333481","-59.135572" ,MainActivity.afdPuesto02,MainActivity.afdFondoPajaritosEstereo);
-            checkPointsDefs[cp++] = new CheckPoint("03","-37.334551","-59.134913" ,MainActivity.afdPuesto03,null);
-            checkPointsDefs[cp++] = new CheckPoint("04","-37.335051","-59.136249" ,MainActivity.afdPuesto04,null); // sin pausa
-            checkPointsDefs[cp++] = new CheckPoint("05","-37.333930","-59.136975"  ,MainActivity.afdPuesto05,MainActivity.afdFondoPajaritosConAphex); // sin pausa (usar el nuevo background)
-            checkPointsDefs[cp++] = new CheckPoint("06","-37.334183","-59.136003" ,MainActivity.afdPuesto06,null);
-            checkPointsDefs[cp++] = new CheckPoint("07","-37.334367","-59.135492" ,MainActivity.afdPuesto07,null);
-            checkPointsDefs[cp++] = new CheckPoint("08","-37.333843","-59.135744" ,MainActivity.afdPuesto08,null);
-            checkPointsDefs[cp++] = new CheckPoint("09","-37.333678","-59.136319" ,MainActivity.afdPuesto09,MainActivity.afdFondoFin);
+            checkPointsDefs[cp++] = new CheckPoint("02",-37.333481,-59.135572 ,MainActivity.afdPuesto02,MainActivity.afdFondoConAphex);
+            checkPointsDefs[cp++] = new CheckPoint("03",-37.334551,-59.134913 ,MainActivity.afdPuesto03,null);
+            checkPointsDefs[cp++] = new CheckPoint("04",-37.335051,-59.136249 ,MainActivity.afdPuesto04,null); // sin pausa
+            checkPointsDefs[cp++] = new CheckPoint("05",-37.333930,-59.136975  ,MainActivity.afdPuesto05,MainActivity.afdFondoConAphex); // sin pausa (usar el nuevo background)
+            checkPointsDefs[cp++] = new CheckPoint("06",-37.334183,-59.136003 ,MainActivity.afdPuesto06,null);
+            checkPointsDefs[cp++] = new CheckPoint("07",-37.334367,-59.135492 ,MainActivity.afdPuesto07,null);
+            checkPointsDefs[cp++] = new CheckPoint("08",-37.333843,-59.135744 ,MainActivity.afdPuesto08,null);
+            checkPointsDefs[cp++] = new CheckPoint("09",-37.333678,-59.136319 ,MainActivity.afdPuesto09,MainActivity.afdFondoConAphex);
         }
 
 

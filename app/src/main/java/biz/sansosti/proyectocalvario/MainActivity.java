@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static AssetFileDescriptor afdDefaultBackground;
     public static AssetFileDescriptor afdFondoInicio;
-    public static AssetFileDescriptor afdFondoPajaritosConAphex;
-    public static AssetFileDescriptor afdFondoPajaritosEstereo;
-    public static AssetFileDescriptor afdFondoFin;
+    public static AssetFileDescriptor afdFondoConAphex;
+
+    public static AssetFileDescriptor afdPuesto01;
     public static AssetFileDescriptor afdPuesto02;
     public static AssetFileDescriptor afdPuesto03;
     public static AssetFileDescriptor afdPuesto04;
@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
     public static AssetFileDescriptor afdPuesto07;
     public static AssetFileDescriptor afdPuesto08;
     public static AssetFileDescriptor afdPuesto09;
+    public static AssetFileDescriptor afdPuesto10;
+    public static AssetFileDescriptor afdPuesto11;
+    public static AssetFileDescriptor afdPuesto12;
+    public static AssetFileDescriptor afdPuesto13;
 
 
     @Override
@@ -90,10 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void inicializarAFDs() {
         afdFondoInicio = getResources().openRawResourceFd(R.raw.fondo_inicio);
-        afdFondoPajaritosConAphex = getResources().openRawResourceFd(R.raw.fondo_pajaritos_con_aphex);
-        afdFondoPajaritosEstereo = getResources().openRawResourceFd(R.raw.fondo_pajaritos_estereo);
-        afdFondoFin = getResources().openRawResourceFd(R.raw.fondo_fin);
+        afdFondoConAphex = getResources().openRawResourceFd(R.raw.fondo_con_aphex);
 
+        afdPuesto01 = getResources().openRawResourceFd(R.raw.puesto01);
         afdPuesto02 = getResources().openRawResourceFd(R.raw.puesto02);
         afdPuesto03 = getResources().openRawResourceFd(R.raw.puesto03);
         afdPuesto04 = getResources().openRawResourceFd(R.raw.puesto04);
@@ -102,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
         afdPuesto07 = getResources().openRawResourceFd(R.raw.puesto07);
         afdPuesto08 = getResources().openRawResourceFd(R.raw.puesto08);
         afdPuesto09 = getResources().openRawResourceFd(R.raw.puesto09);
+        afdPuesto10 = getResources().openRawResourceFd(R.raw.puesto10);
+        afdPuesto11 = getResources().openRawResourceFd(R.raw.puesto11);
+        afdPuesto12 = getResources().openRawResourceFd(R.raw.puesto12);
+        afdPuesto13 = getResources().openRawResourceFd(R.raw.puesto13);
 
         afdDefaultBackground = afdFondoInicio;
 

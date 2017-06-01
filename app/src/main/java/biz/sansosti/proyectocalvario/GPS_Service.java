@@ -33,7 +33,6 @@ public class GPS_Service extends Service {
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-            //    MainActivity.tv_main_text.setText(location.getLatitude() + " - " + location.getLongitude());
                 locationAudioPlayer.onLocationChanged(location);
             }
 

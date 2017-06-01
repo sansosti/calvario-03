@@ -10,19 +10,19 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static biz.sansosti.proyectocalvario.Constants.DEBUG;
 import static biz.sansosti.proyectocalvario.Constants.MAX_CHECKPOINTS_DISPLAY_LIST;
+import static biz.sansosti.proyectocalvario.Constants.SHOW_DEBUG_INFO;
 
 public class MainActivity extends AppCompatActivity {
 
     public static TextView tv_user_shown_status;
+
     public static TextView tv_latitude;
     public static TextView tv_longitude;
     public static TextView tv_status;
@@ -63,32 +63,35 @@ public class MainActivity extends AppCompatActivity {
 
     private void inicializarStaticViews() {
         tv_user_shown_status = (TextView) findViewById(R.id.tv_user_shown_status);
-        tv_latitude = (TextView) findViewById(R.id.tv_latitude);
-        tv_longitude = (TextView) findViewById(R.id.tv_longitude);
-        tv_status = (TextView) findViewById(R.id.tv_status);
-        tv_current_checkpoint = (TextView) findViewById(R.id.tv_current_checkpoint);
-        tv_closer_checkpoint = (TextView) findViewById(R.id.tv_closer_checkpoint);
 
-        mCheckPoints = new TextView[MAX_CHECKPOINTS_DISPLAY_LIST];
+        if (SHOW_DEBUG_INFO) {
+            tv_latitude = (TextView) findViewById(R.id.tv_latitude);
+            tv_longitude = (TextView) findViewById(R.id.tv_longitude);
+            tv_status = (TextView) findViewById(R.id.tv_status);
+            tv_current_checkpoint = (TextView) findViewById(R.id.tv_current_checkpoint);
+            tv_closer_checkpoint = (TextView) findViewById(R.id.tv_closer_checkpoint);
 
-        for (int i = 0; i < MAX_CHECKPOINTS_DISPLAY_LIST; i++) {
-            mCheckPoints[i] = new TextView(this);
-            mCheckPoints[i].setId(i);
-            mCheckPoints[i].setText(String.valueOf(i));
-            int checkPointStyle = R.style.TextAppearance_AppCompat_Inverse;
-            if (Build.VERSION.SDK_INT >= 23) {
-                mCheckPoints[i].setTextAppearance(checkPointStyle);
-            } else {
-                mCheckPoints[i].setTextAppearance(this, checkPointStyle);
+            mCheckPoints = new TextView[MAX_CHECKPOINTS_DISPLAY_LIST];
+
+            for (int i = 0; i < MAX_CHECKPOINTS_DISPLAY_LIST; i++) {
+                mCheckPoints[i] = new TextView(this);
+                mCheckPoints[i].setId(i);
+                mCheckPoints[i].setText(String.valueOf(i));
+                int checkPointStyle = R.style.TextAppearance_AppCompat_Inverse;
+                if (Build.VERSION.SDK_INT >= 23) {
+                    mCheckPoints[i].setTextAppearance(checkPointStyle);
+                } else {
+                    mCheckPoints[i].setTextAppearance(this, checkPointStyle);
+                }
+
+                TableRow parentRow = new TableRow(this);
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                parentRow.setLayoutParams(lp);
+                parentRow.addView(mCheckPoints[i]);
+
+                TableLayout parentTable = (TableLayout) findViewById(R.id.tl_debug);
+                parentTable.addView(parentRow, i);
             }
-
-            TableRow parentRow = new TableRow(this);
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            parentRow.setLayoutParams(lp);
-            parentRow.addView(mCheckPoints[i]);
-
-            TableLayout parentTable = (TableLayout) findViewById(R.id.tl_debug);
-            parentTable.addView(parentRow,i);
         }
     }
 
@@ -112,28 +115,27 @@ public class MainActivity extends AppCompatActivity {
 
         afdDefaultBackground = afdFondoInicio;
 
-        final TableLayout tabla = (TableLayout)findViewById(R.id.main_debug_table);
-
-        View.OnLongClickListener listener = new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                switch (tabla.getVisibility()) {
-                    case View.VISIBLE:
-                        tabla.setVisibility(View.INVISIBLE);
-                        break;
-                    case View.INVISIBLE:
-                        tabla.setVisibility(View.VISIBLE);
-                        break;
+        final TableLayout tabla = (TableLayout) findViewById(R.id.main_debug_table);
+        tabla.setVisibility(View.INVISIBLE);
+        if (SHOW_DEBUG_INFO) {
+            tabla.setVisibility(View.VISIBLE);
+            View.OnLongClickListener listener = new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    switch (tabla.getVisibility()) {
+                        case View.VISIBLE:
+                            tabla.setVisibility(View.INVISIBLE);
+                            break;
+                        case View.INVISIBLE:
+                            tabla.setVisibility(View.VISIBLE);
+                            break;
+                    }
+                    return false;
                 }
-                return false;
-            }
-        };
+            };
 
-        tabla.setOnLongClickListener(listener);
-        findViewById(R.id.main_background).setOnLongClickListener(listener);
-
-        if (!DEBUG) {
-            tabla.setVisibility(View.INVISIBLE);
+            tabla.setOnLongClickListener(listener);
+            findViewById(R.id.main_background).setOnLongClickListener(listener);
         }
     }
 
@@ -189,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (exit) {
+            Intent i = new Intent(getApplicationContext(), GPS_Service.class);
+            stopService(i);
+            finish();
             android.os.Process.killProcess(android.os.Process.myPid());
         } else {
             Toast.makeText(this, R.string.close_confirmation,

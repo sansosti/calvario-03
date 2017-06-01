@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import static biz.sansosti.proyectocalvario.Constants.DEBUG;
+import static biz.sansosti.proyectocalvario.Constants.USE_DEBUG_CHECKPOINTS;
 import static biz.sansosti.proyectocalvario.Constants.DISTANCE_THRESHOLD;
 import static biz.sansosti.proyectocalvario.Constants.PAUSE_BACKGROUND_SOUND_IN_CHECKPOINT;
+import static biz.sansosti.proyectocalvario.Constants.SHOW_DEBUG_INFO;
 
 /**
  * Created by sergio on 23/05/2017.
@@ -29,8 +30,12 @@ public class LocationAudioPlayer {
     private AssetFileDescriptor currentBackgroundAudio;
     private AssetFileDescriptor currentAudio;
 
+    // Control
+    private boolean firstLocationUpdate;
+
     public LocationAudioPlayer() {
 
+        firstLocationUpdate = true;
         // Init checkPointMediaPlayer
         checkPointMediaPlayer = new MediaPlayer();
         checkPointMediaPlayer.setLooping(false);
@@ -55,7 +60,6 @@ public class LocationAudioPlayer {
         try {
             aPlayer.setDataSource(afdAudio.getFileDescriptor(),afdAudio.getStartOffset(),afdAudio.getLength());
             aPlayer.prepare();
-            aPlayer.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,19 +67,9 @@ public class LocationAudioPlayer {
 
     protected void populateCheckPoints(){
 
-        if (!DEBUG) {
+        if (!USE_DEBUG_CHECKPOINTS) {
             checkPointsDefs = new CheckPoint[13];
             int cp = 0;
-            /*
-            checkPointsDefs[cp++] = new CheckPoint("02","-37.3294242","-59.1508588" ,MainActivity.afdPuesto02,MainActivity.afdFondoPajaritosEstereo);
-            checkPointsDefs[cp++] = new CheckPoint("03","-37.329595" ,"-59.1511569" ,MainActivity.afdPuesto03,null);
-            checkPointsDefs[cp++] = new CheckPoint("04","-37.3295102","-59.1518422" ,MainActivity.afdPuesto04,null); // sin pausa
-            checkPointsDefs[cp++] = new CheckPoint("05","-37.3295676","-59.152393"  ,MainActivity.afdPuesto05,MainActivity.afdFondoPajaritosConAphex); // sin pausa (usar el nuevo background)
-            checkPointsDefs[cp++] = new CheckPoint("06","-37.3293892","-59.1530269" ,MainActivity.afdPuesto06,null);
-            checkPointsDefs[cp++] = new CheckPoint("07","-37.3297072","-59.1534959" ,MainActivity.afdPuesto07,null);
-            checkPointsDefs[cp++] = new CheckPoint("08","-37.3291582","-59.1533802" ,MainActivity.afdPuesto08,null);
-            checkPointsDefs[cp++] = new CheckPoint("09","-37.3288975","-59.1529821" ,MainActivity.afdPuesto09,MainActivity.afdFondoFin);
-            */
             checkPointsDefs[cp++] = new CheckPoint("01 - Escalera",-37.328094,-59.152994,MainActivity.afdPuesto01,MainActivity.afdFondoConAphex);
             checkPointsDefs[cp++] = new CheckPoint("02 - Cartel Baño",-37.328313,-59.152454,MainActivity.afdPuesto02,MainActivity.afdFondoConAphex);
             checkPointsDefs[cp++] = new CheckPoint("03 - Camino arriba Capilla",-37.328819,-59.152883,MainActivity.afdPuesto03,null);
@@ -92,25 +86,33 @@ public class LocationAudioPlayer {
         } else {
             checkPointsDefs = new CheckPoint[8];
             int cp = 0;
-            checkPointsDefs[cp++] = new CheckPoint("02",-37.333481,-59.135572 ,MainActivity.afdPuesto02,MainActivity.afdFondoConAphex);
-            checkPointsDefs[cp++] = new CheckPoint("03",-37.334551,-59.134913 ,MainActivity.afdPuesto03,null);
-            checkPointsDefs[cp++] = new CheckPoint("04",-37.335051,-59.136249 ,MainActivity.afdPuesto04,null); // sin pausa
-            checkPointsDefs[cp++] = new CheckPoint("05",-37.333930,-59.136975  ,MainActivity.afdPuesto05,MainActivity.afdFondoConAphex); // sin pausa (usar el nuevo background)
-            checkPointsDefs[cp++] = new CheckPoint("06",-37.334183,-59.136003 ,MainActivity.afdPuesto06,null);
-            checkPointsDefs[cp++] = new CheckPoint("07",-37.334367,-59.135492 ,MainActivity.afdPuesto07,null);
-            checkPointsDefs[cp++] = new CheckPoint("08",-37.333843,-59.135744 ,MainActivity.afdPuesto08,null);
-            checkPointsDefs[cp++] = new CheckPoint("09",-37.333678,-59.136319 ,MainActivity.afdPuesto09,MainActivity.afdFondoConAphex);
+            checkPointsDefs[cp++] = new CheckPoint("01",-37.333481,-59.135572 ,MainActivity.afdPuesto01,MainActivity.afdFondoConAphex);
+            checkPointsDefs[cp++] = new CheckPoint("02",-37.334551,-59.134913 ,MainActivity.afdPuesto02,null);
+            checkPointsDefs[cp++] = new CheckPoint("03",-37.335051,-59.136249 ,MainActivity.afdPuesto03,null); // sin pausa
+            checkPointsDefs[cp++] = new CheckPoint("04",-37.333930,-59.136975  ,MainActivity.afdPuesto04,MainActivity.afdFondoConAphex); // sin pausa (usar el nuevo background)
+            checkPointsDefs[cp++] = new CheckPoint("05",-37.334183,-59.136003 ,MainActivity.afdPuesto05,null);
+            checkPointsDefs[cp++] = new CheckPoint("06",-37.334367,-59.135492 ,MainActivity.afdPuesto06,null);
+            checkPointsDefs[cp++] = new CheckPoint("07",-37.333843,-59.135744 ,MainActivity.afdPuesto07,null);
+            checkPointsDefs[cp++] = new CheckPoint("08",-37.333678,-59.136319 ,MainActivity.afdPuesto08,MainActivity.afdFondoConAphex);
         }
-
-
     }
 
     public void onLocationChanged(Location location) {
 
         MainActivity.tv_user_shown_status.setText(R.string.running);
+        if (USE_DEBUG_CHECKPOINTS) {
+            MainActivity.tv_user_shown_status.setText(MainActivity.tv_user_shown_status.getText() + " " + "Debug Checkpoints");
+        }
 
-        MainActivity.tv_latitude.setText(String.valueOf(location.getLatitude()));
-        MainActivity.tv_longitude.setText(String.valueOf(location.getLongitude()));
+        if (SHOW_DEBUG_INFO) {
+            MainActivity.tv_latitude.setText(String.valueOf(location.getLatitude()));
+            MainActivity.tv_longitude.setText(String.valueOf(location.getLongitude()));
+        }
+
+        if (firstLocationUpdate) {
+            backgroundMediaPlayer.start();
+            firstLocationUpdate = false;
+        }
 
         if (!checkPointMediaPlayer.isPlaying()) {
             processNewLocation(location);
@@ -122,7 +124,10 @@ public class LocationAudioPlayer {
 
     private void processNewLocation(final Location location) {
         float accuracy = location.getAccuracy();
-        MainActivity.tv_status.setText(R.string.boyando);
+
+        if (SHOW_DEBUG_INFO) {
+            MainActivity.tv_status.setText(R.string.boyando);
+        }
 
         float minDistance = 99999999;
         int closestCheckPointIndex = -1;
@@ -152,8 +157,9 @@ public class LocationAudioPlayer {
                 minDistance = distance;
                 closestCheckPointIndex = i;
             }
-
-            MainActivity.mCheckPoints[i].setText(locationList.get(i).getProvider() + "\tDist: " + String.format("%1$.2f", location.distanceTo(locationList.get(i))));
+            if (SHOW_DEBUG_INFO) {
+                MainActivity.mCheckPoints[i].setText(locationList.get(i).getProvider() + "\tDist: " + String.format("%1$.2f", location.distanceTo(locationList.get(i))));
+            }
         }
 
         boolean checkPointFound = ((minDistance <= DISTANCE_THRESHOLD) && (closestCheckPointIndex != -1));
@@ -163,23 +169,26 @@ public class LocationAudioPlayer {
         if (checkPointIsNew) {
             currentCheckPointIndex = closestCheckPointIndex;
             currentAudio = checkPointsDefs[currentCheckPointIndex].getAudio();
-            MainActivity.tv_status.setText("At " + checkPointsDefs[currentCheckPointIndex].getName());
-            MainActivity.tv_current_checkpoint.setText(checkPointsDefs[currentCheckPointIndex].getName());
-            MainActivity.tv_closer_checkpoint.setText(String.format("%1$.0f", minDistance) + " mts.");
+            if (SHOW_DEBUG_INFO) {
+                MainActivity.tv_status.setText("At " + checkPointsDefs[currentCheckPointIndex].getName());
+                MainActivity.tv_current_checkpoint.setText(checkPointsDefs[currentCheckPointIndex].getName());
+                MainActivity.tv_closer_checkpoint.setText(String.format("%1$.0f", minDistance) + " mts.");
+            }
 
             if (checkPointMediaPlayer.isPlaying()) {
                 checkPointMediaPlayer.stop();
             }
             checkPointMediaPlayer.reset();
 
-            //Toast.makeText(this, "Location Updates Stopped",Toast.LENGTH_SHORT).show();
-
+            /*
             try {
                 checkPointMediaPlayer.setDataSource(currentAudio.getFileDescriptor(),currentAudio.getStartOffset(),currentAudio.getLength());
                 checkPointMediaPlayer.prepare();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            */
+            loadMediaPlayer(checkPointMediaPlayer,currentAudio);
 
             AssetFileDescriptor newBackgroundAudio = checkPointsDefs[currentCheckPointIndex].getCustomBackground();
             if (newBackgroundAudio != null) {
@@ -189,6 +198,7 @@ public class LocationAudioPlayer {
                 backgroundMediaPlayer.reset();
                 backgroundMediaPlayer.setLooping(true);
                 currentBackgroundAudio = newBackgroundAudio;
+                /*
                 try {
                     backgroundMediaPlayer.setDataSource(currentBackgroundAudio.getFileDescriptor(), currentBackgroundAudio.getStartOffset(), currentBackgroundAudio.getLength());
                     backgroundMediaPlayer.prepare();
@@ -196,6 +206,9 @@ public class LocationAudioPlayer {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                */
+                loadMediaPlayer(backgroundMediaPlayer,currentBackgroundAudio);
+                backgroundMediaPlayer.start();
             }
             if (PAUSE_BACKGROUND_SOUND_IN_CHECKPOINT) {
                 backgroundMediaPlayer.pause();
@@ -207,8 +220,10 @@ public class LocationAudioPlayer {
             if (closestCheckPointIndex != -1) {
                 masCercano = " (Más Cercano: " + checkPointsDefs[closestCheckPointIndex].getLocation().getProvider() + " a " + String.format("%1$.0f", minDistance) + " mts.)";
             }
-            MainActivity.tv_current_checkpoint.setText(R.string.boyando);
-            MainActivity.tv_closer_checkpoint.setText(masCercano);
+            if (SHOW_DEBUG_INFO) {
+                MainActivity.tv_current_checkpoint.setText(R.string.boyando);
+                MainActivity.tv_closer_checkpoint.setText(masCercano);
+            }
         }
 
     }

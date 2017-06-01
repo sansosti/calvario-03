@@ -8,6 +8,6 @@
     <string name="closer_checkpoint_label">Closer CHKP</string>
     <string name="close_confirmation">Presione nuevamente para cerrar</string>
     <string name="running">Andando...</string>
-    <string name="playing">Reproduciendo...</string>
+    <string name="playing">Escuchando...</string>
     <string name="longitude_label">Lon</string>
 </resources>

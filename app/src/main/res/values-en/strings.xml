@@ -5,7 +5,7 @@
     <string name="boyando">wandering...</string>
     <string name="closer_checkpoint_label">Closer CHKP</string>
     <string name="close_confirmation">Press again to close</string>
-    <string name="playing">Playing...</string>
+    <string name="playing">Listening...</string>
     <string name="running">Wandering...</string>
     <string name="longitude_label">Lon</string>
 </resources>

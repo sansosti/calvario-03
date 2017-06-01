@@ -14,7 +14,8 @@ public class Constants {
     private Constants() {
     }
 
-    public static final boolean DEBUG = false;
+    public static final boolean USE_DEBUG_CHECKPOINTS = false;
+    public static final boolean SHOW_DEBUG_INFO = false;
     public static final boolean PAUSE_BACKGROUND_SOUND_IN_CHECKPOINT = true;
     public static final int DISTANCE_THRESHOLD = 20;
     public static final int MAX_CHECKPOINTS_DISPLAY_LIST = 20;
